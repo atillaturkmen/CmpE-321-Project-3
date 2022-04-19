@@ -1,23 +1,31 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/db-utils");
+const userTypes = require("../util/user-types");
 
 router.get('/login', async (req, res) => {
-    res.render("login-selection");
+    res.render("login/login-selection");
 });
 
 router.get('/login/manager', async (req, res) => {
-    res.render("login-manager");
+    res.render("login/login-manager");
 });
 
 router.post('/login/manager', async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
-    let auth = await db.authDbManager(username, password);
-    if (auth.length == 0) {
-        res.send("auth error");
+    let exists = await db.dbManagerExists(username);
+    if (!exists) {
+        return res.send("wrong username");
+    }
+    let correctPass = await db.dbManagerPassCorrect(username, password);
+    if (correctPass) {
+        // manager logged in
+        req.session.userType = userTypes.manager;
+        req.session.username = username;
+        res.redirect("/");
     } else {
-        res.send("ok");
+        res.send("wrong password");
     }
 });
 
