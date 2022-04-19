@@ -1,0 +1,25 @@
+{
+  "name": "cmpe-321-project-3",
+  "version": "1.0.0",
+  "description": "project 3",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atillaturkmen/CmpE-321-Project-3.git"
+  },
+  "keywords": [
+    "sql"
+  ],
+  "author": "Atilla Türkmen, Onur Kömürcü",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atillaturkmen/CmpE-321-Project-3/issues"
+  },
+  "homepage": "https://github.com/atillaturkmen/CmpE-321-Project-3#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
