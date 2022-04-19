@@ -21,6 +21,7 @@
   "homepage": "https://github.com/atillaturkmen/CmpE-321-Project-3#readme",
   "dependencies": {
     "dotenv": "^16.0.0",
+    "ejs": "^3.0.2",
     "express": "^4.17.3",
     "mysql2": "^2.3.3"
   }

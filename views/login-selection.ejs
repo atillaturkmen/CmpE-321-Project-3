@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header'); -%>
+</head>
+
+<body>
+    <button id="manager">Database Manager Login</button>
+    <button id="instructor">Instructor Login</button>
+    <button id="student">Student Login</button>
+</body>
+
+<script>
+    document.getElementById("manager").onclick = function () {
+        window.location = "login/manager";
+    };
+    document.getElementById("instructor").onclick = function () {
+        window.location = "login/instructor";
+    };
+    document.getElementById("student").onclick = function () {
+        window.location = "login/student";
+    };
+</script>
