@@ -3,6 +3,7 @@
 
 <head>
     <%- include('../partials/header'); -%>
+    <script src="/public/js/initialize-buttons.js"></script>
 </head>
 
 <body>
@@ -12,13 +13,5 @@
 </body>
 
 <script>
-    document.getElementById("manager").onclick = function () {
-        window.location = "login/manager";
-    };
-    document.getElementById("instructor").onclick = function () {
-        window.location = "login/instructor";
-    };
-    document.getElementById("student").onclick = function () {
-        window.location = "login/student";
-    };
+    initializeButtons("login");
 </script>

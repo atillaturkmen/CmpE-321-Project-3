@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <script src="/public/js/initialize-buttons.js"></script>
+</head>
+
+<body>
+    <button id="add-student">Add Student</button>
+    <button id="add-instructor">Add Instructor</button>
+    <button id="delete-student">Delete Student</button>
+    <button id="update-instructor">Update Instructor</button>
+    <button id="view-all-students">View All Students</button>
+    <button id="view-all-instructors">View All Instructors</button>
+    <button id="view-student-grades">View Student Grades</button>
+    <button id="view-instructor-courses">View Instructor Courses</button>
+    <button id="view-course-grade">View Grade Average of Course</button>
+</body>
+
+<script>
+    initializeButtons("manager");
+</script>
