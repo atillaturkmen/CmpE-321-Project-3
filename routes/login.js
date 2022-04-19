@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db/db-utils");
+const sha256 = require("../util/sha256");
 const userTypes = require("../util/user-types");
 
 router.get('/login', async (req, res) => {
@@ -18,7 +19,8 @@ router.post('/login/manager', async (req, res) => {
     if (!exists) {
         return res.send("wrong username");
     }
-    let correctPass = await db.dbManagerPassCorrect(username, password);
+    let hashedPass = sha256(password);
+    let correctPass = await db.dbManagerPassCorrect(username, hashedPass);
     if (correctPass) {
         // manager logged in
         req.session.userType = userTypes.manager;
