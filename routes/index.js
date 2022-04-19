@@ -1,10 +1,12 @@
 const express = require("express");
-const db = require("../db/db-utils");
-
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    res.render("login-selection");
+    res.redirect("/login");
 });
+
+const login = require("./login");
+router.get("/login*", login);
+router.post("/login*", login);
 
 module.exports = router;

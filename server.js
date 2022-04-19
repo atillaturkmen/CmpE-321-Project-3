@@ -5,6 +5,11 @@ const port = 80;
 
 app.set("view engine", "ejs");
 
+//necessary for taking form data
+app.use(express.urlencoded({
+    extended: false
+}));
+
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
