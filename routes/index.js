@@ -4,7 +4,7 @@ const userTypes = require("../util/user-types");
 
 router.get('/', (req, res) => {
     if (req.session.userType == userTypes.manager) {
-        res.render("manager/manager-menu");
+        res.redirect("/manager");
     } else {
         res.redirect("/login");
     }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/manager/add-instructor" method="POST">
+        <label for="username">Instructor Username:</label><br>
+        <input type="text" name="username" required><br>
+        <label for="password">Instructor Password:</label><br>
+        <input type="text" name="password" required><br>
+        <label for="name">Instructor Name:</label><br>
+        <input type="text" name="name" required><br>
+        <label for="surname">Instructor Surname:</label><br>
+        <input type="text" name="surname" required><br>
+        <label for="email">Instructor E-mail:</label><br>
+        <input type="text" name="email" required><br>
+        <label for="department">Instructor Department ID:</label><br>
+        <input type="text" name="department" required><br>
+        <label for="title">Instructor Title:</label><br>
+        <select name="title">
+            <option value="Assistant Professor">Assistant Professor</option>
+            <option value="Associate Professor">Associate Professor</option>
+            <option value="Professor">Professor</option>
+        </select><br>
+        <button type="submit">Add Instructor</button>
+    </form>
+</body>

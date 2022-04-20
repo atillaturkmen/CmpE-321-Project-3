@@ -7,12 +7,18 @@
 
 <body>
     <form action="/manager/add-student" method="POST">
-        <input type="text" name="username" placeholder="Student Username" required>
-        <input type="text" name="password" placeholder="Student Password" required>
-        <input type="text" name="name" placeholder="Student Name" required>
-        <input type="text" name="surname" placeholder="Student Surname" required>
-        <input type="text" name="email" placeholder="Student E-mail" required>
-        <input type="text" name="department" placeholder="Student Department ID" required>
+        <label for="username">Student Username:</label><br>
+        <input type="text" name="username" required><br>
+        <label for="password">Student Password:</label><br>
+        <input type="text" name="password" required><br>
+        <label for="name">Student Name:</label><br>
+        <input type="text" name="name" required><br>
+        <label for="surname">Student Surname:</label><br>
+        <input type="text" name="surname" required><br>
+        <label for="email">Student E-mail:</label><br>
+        <input type="text" name="email" required><br>
+        <label for="department">Student Department ID:</label><br>
+        <input type="text" name="department" required><br>
         <button type="submit">Add Student</button>
     </form>
 </body>
