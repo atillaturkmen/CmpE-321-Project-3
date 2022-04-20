@@ -12,6 +12,6 @@ exports.dbManagerPassCorrect = async function (username, password) {
     return arr.length != 0;
 };
 
-exports.getAllStudentsOrderedByCredits = async function () {
-    return query(`SELECT * FROM Student S JOIN User U ON U.username=S.username ORDER BY completed_courses ASC;`);
+exports.getAllStudentsOrderedByCredits = function () {
+    return query(`SELECT * FROM Student S JOIN User U ON U.username=S.username ORDER BY completed_credits ASC;`);
 }
