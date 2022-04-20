@@ -34,10 +34,10 @@ app.post("*", routes);
 
 // If there is an error this function is fired
 app.use((err, req, res, next) => {
+    console.log(err);
     res.status(500);
     if (err.sqlMessage) {
-        res.send(err.sqlMessage);
-    } else {
-        res.send(err);
+        return res.send(err.sqlMessage);
     }
+    next(err);
 });

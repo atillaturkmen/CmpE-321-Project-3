@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <link rel="stylesheet" href="/public/css/table.css">
+</head>
+
+<body>
+    <table>
+        <tr>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Completed Credits</th>
+          <th>GPA</th>
+        </tr>
+        <% for (var i = 0; i < students.length; i++) { %>
+            <tr>
+                <td><%= students[i].username %></td>
+                <td><%= students[i].name %></td>
+                <td><%= students[i].surname %></td>
+                <td><%= students[i].email %></td>
+                <td><%= students[i].department_id %></td>
+                <td><%= students[i].completed_credits %></td>
+                <td><%= students[i].gpa %></td>
+            </tr>
+        <% } %>
+      </table>
+</body>

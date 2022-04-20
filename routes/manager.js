@@ -50,4 +50,10 @@ router.post('/manager/add-instructor', async (req, res) => {
     res.send(result);
 });
 
+router.get('/manager/view-students', async (req, res) => {
+    let students = await db.getAllStudentsOrderedByCredits();
+    console.log(students);
+    res.render("manager/view-students", {students: students});
+});
+
 module.exports = router;
