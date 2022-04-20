@@ -30,6 +30,7 @@ CREATE TABLE `User` (
 CREATE TABLE `Instructor` (
   `username` VARCHAR(250) NOT NULL,
   `title` VARCHAR(250) NOT NULL,
+  CONSTRAINT allowed_instructor_titles CHECK (title='Assistant Professor' OR title='Associate Professor' OR title='Professor'),
   PRIMARY KEY (`username`),
   FOREIGN KEY (`username`)
   REFERENCES `User` (`username`)
@@ -38,6 +39,8 @@ CREATE TABLE `Instructor` (
 CREATE TABLE `Student` (
   `username` VARCHAR(250) NOT NULL,
   `student_id` VARCHAR(250) NOT NULL UNIQUE,
+  `completed_courses` INT NOT NULL DEFAULT 0,
+  `gpa` FLOAT NOT NULL DEFAULT 0,
   PRIMARY KEY (`username`),
   FOREIGN KEY (`username`)
   REFERENCES `User` (`username`)
@@ -63,9 +66,8 @@ CREATE TABLE `Course` (
   REFERENCES `Classroom` (`classroom_id`),
   FOREIGN KEY (`instructor_username`)
   REFERENCES `Instructor` (`username`),
-  UNIQUE KEY dontOverlap (`slot`,`classroom_id`),
-  CHECK (slot>=1), -- slot can be from monday to friday
-  CHECK (slot<=10)
+  UNIQUE KEY overlaps (`slot`,`classroom_id`),
+  CONSTRAINT allowed_slots CHECK (slot>=1 AND slot<=10) -- slot can be from monday to friday
 );
 
 -- if grade is null, that means student is taking the course this semester
@@ -88,5 +90,5 @@ CREATE TABLE `Prerequisites` (
   REFERENCES `Course` (`course_id`),
   FOREIGN KEY (`prq`)
   REFERENCES `Course` (`course_id`),
-  CHECK (STRCMP(prq_for, prq)=1)
+  CONSTRAINT allowed_prerequisites CHECK (STRCMP(prq_for, prq)=1)
 );
