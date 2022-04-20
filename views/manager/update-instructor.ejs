@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/manager/update-instructor" method="POST" autocomplete="off">
+        <label for="username">Instructor Username:</label><br>
+        <input type="text" name="username" required><br>
+        <label for="title">New Instructor Title: </label><br>
+        <select name="title">
+            <option value="Assistant Professor">Assistant Professor</option>
+            <option value="Associate Professor">Associate Professor</option>
+            <option value="Professor">Professor</option>
+        </select><br>
+        <button type="submit">Update Instructor</button>
+    </form>
+</body>
