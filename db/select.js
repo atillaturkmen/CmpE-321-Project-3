@@ -13,5 +13,12 @@ exports.dbManagerPassCorrect = async function (username, password) {
 };
 
 exports.getAllStudentsOrderedByCredits = function () {
-    return query(`SELECT * FROM Student S JOIN User U ON U.username=S.username ORDER BY completed_credits ASC;`);
+    return query(`SELECT S.username, completed_credits, gpa, name, surname, email, department_id 
+    FROM Student S JOIN User U ON U.username=S.username ORDER BY completed_credits ASC;`);
+}
+
+exports.getStudentGrades = function (id) {
+    return query(`SELECT C.course_id, C.name, grade FROM Grades G 
+    INNER JOIN Course C ON C.course_id=G.course_id 
+    WHERE student_id=?;`, [id]);
 }

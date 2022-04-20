@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <link rel="stylesheet" href="/public/css/table.css">
+</head>
+
+<body>
+    <% if(!grades){ %>
+        <form action="/manager/view-student-grades" method="POST" autocomplete="off">
+            <label for="id">Student ID:</label><br>
+            <input type="number" name="id" required><br>
+            <button type="submit">View Student Grades</button>
+        </form>
+      <% } else{ %>  
+        <table>
+            <tr>
+              <th>Course ID</th>
+              <th>Course Name</th>
+              <th>Grade</th>
+            </tr>
+            <% for (var i = 0; i < grades.length; i++) { %>
+                <tr>
+                    <td><%= grades[i].course_id %></td>
+                    <td><%= grades[i].name %></td>
+                    <td><%= grades[i].grade %></td>
+                </tr>
+            <% } %>
+          </table>
+     <% } %>
+</body>

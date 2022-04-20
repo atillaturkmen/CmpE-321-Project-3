@@ -65,4 +65,14 @@ router.get('/manager/view-students', async (req, res) => {
     res.render("manager/view-students", {students: students});
 });
 
+router.get('/manager/view-student-grades', async (req, res) => {
+    res.render("manager/view-student-grades", {grades: undefined});
+});
+
+router.post('/manager/view-student-grades', async (req, res) => {
+    let id = req.body.id;
+    let grades = await db.getStudentGrades(id);
+    res.render("manager/view-student-grades", {grades: grades});
+});
+
 module.exports = router;
