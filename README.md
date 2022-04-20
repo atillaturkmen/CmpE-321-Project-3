@@ -25,7 +25,7 @@ NodeJS and MySQL are required to run the server.
 1. [X] DBM Login
 2. [x] DBM Add User
 3. [x] DBM Delete Student
-4. [ ] DBM Update Instructor Title
+4. [x] DBM Update Instructor Title
 5. [X] DBM View Students
 6. [ ] DBM View Instructors
 7. [X] DBM View Student Grades
