@@ -75,4 +75,14 @@ router.post('/manager/view-student-grades', async (req, res) => {
     res.render("manager/view-student-grades", {grades: grades});
 });
 
+router.get('/manager/view-course-grade', async (req, res) => {
+    res.render("manager/view-course-grade", {averageGrade: undefined});
+});
+
+router.post('/manager/view-course-grade', async (req, res) => {
+    let course_id = req.body.id;
+    let averageGrade = await db.getCourseAverageGrade(course_id);
+    res.render("manager/view-course-grade", {averageGrade: averageGrade[0]});
+});
+
 module.exports = router;

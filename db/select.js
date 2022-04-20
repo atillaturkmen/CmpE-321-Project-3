@@ -22,3 +22,9 @@ exports.getStudentGrades = function (id) {
     INNER JOIN Course C ON C.course_id=G.course_id 
     WHERE student_id=?;`, [id]);
 }
+
+exports.getCourseAverageGrade = function (id) {
+    return query(`SELECT C.name, C.course_id, AVG(grade) AS average 
+    FROM Grades G JOIN Course C ON C.course_id=G.course_id 
+    WHERE G.course_id=?;`, [id]);
+}
