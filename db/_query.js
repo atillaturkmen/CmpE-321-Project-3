@@ -8,6 +8,7 @@ const db = mysql.createConnection({
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE_NAME,
     port: process.env.MYSQL_PORT,
+    multipleStatements: true,
 });
 
 db.connect(function (err) {

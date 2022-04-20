@@ -4,11 +4,20 @@ const db = require("../db/db-utils");
 const sha256 = require("../util/sha256");
 const userTypes = require("../util/user-types");
 
-router.get('/login', async (req, res) => {
+// logged in users cannot see login pages
+router.use((req, res, next) => {
+    if (req.session.userType != undefined) {
+        res.redirect("/");
+    } else {
+        next();
+    }
+});
+
+router.get('/login', (req, res) => {
     res.render("login/login-selection");
 });
 
-router.get('/login/manager', async (req, res) => {
+router.get('/login/manager', (req, res) => {
     res.render("login/login-manager");
 });
 

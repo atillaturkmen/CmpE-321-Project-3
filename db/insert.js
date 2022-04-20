@@ -1,5 +1,8 @@
 const query = require("./_query");
 
-exports.insertDatabaseManager = function (username, password) {
-    return query("INSERT INTO Database_Manager VALUES (?, ?);", [username, password]);
+exports.addStudent = function (username, password, name, surname, email, department) {
+    return query(`
+    INSERT INTO User VALUES (?, ?, ?, ?, ?, ?);
+    INSERT INTO Student (username) VALUES (?);
+    `, [username, password, name, surname, email, department, username]);
 };

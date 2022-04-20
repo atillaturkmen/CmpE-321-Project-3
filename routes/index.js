@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userTypes = require("../util/user-types");
 
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     if (req.session.userType == userTypes.manager) {
         res.render("manager/manager-menu");
     } else {

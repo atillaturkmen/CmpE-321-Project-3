@@ -38,7 +38,7 @@ CREATE TABLE `Instructor` (
 
 CREATE TABLE `Student` (
   `username` VARCHAR(250) NOT NULL,
-  `student_id` VARCHAR(250) NOT NULL UNIQUE,
+  `student_id` VARCHAR(250) NOT NULL UNIQUE AUTO_INCREMENT,
   `completed_courses` INT NOT NULL DEFAULT 0,
   `gpa` FLOAT NOT NULL DEFAULT 0,
   PRIMARY KEY (`username`),
