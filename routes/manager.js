@@ -59,6 +59,16 @@ router.post('/manager/delete-student', async (req, res) => {
     await db.deleteStudent(id);
     res.redirect("/manager/view-students");
 });
+router.get('/manager/update-instructor', (req, res) => {
+    res.render("manager/update-instructor");
+});
+
+router.post('/manager/update-instructor', async (req, res) => {
+    let username = req.body.username;
+    let title = req.body.title;
+    await db.updateInstructorTitle(username, title);
+    res.redirect("/manager/view-instructor");
+});
 
 router.get('/manager/view-students', async (req, res) => {
     let students = await db.getAllStudentsOrderedByCredits();

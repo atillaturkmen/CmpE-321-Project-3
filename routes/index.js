@@ -5,6 +5,10 @@ const userTypes = require("../util/user-types");
 router.get('/', (req, res) => {
     if (req.session.userType == userTypes.manager) {
         res.redirect("/manager");
+    } else if (req.session.userType == userTypes.instructor) {
+        res.redirect("/instructor");
+    } else if (req.session.userType == userTypes.student){
+        res.redirect("/student");
     } else {
         res.redirect("/login");
     }
