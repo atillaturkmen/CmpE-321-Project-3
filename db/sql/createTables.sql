@@ -38,12 +38,13 @@ CREATE TABLE `Instructor` (
 
 CREATE TABLE `Student` (
   `username` VARCHAR(250) NOT NULL,
-  `student_id` VARCHAR(250) NOT NULL UNIQUE AUTO_INCREMENT,
+  `student_id` INT NOT NULL UNIQUE AUTO_INCREMENT,
   `completed_credits` INT NOT NULL DEFAULT 0,
   `gpa` FLOAT NOT NULL DEFAULT 0,
   PRIMARY KEY (`username`),
   FOREIGN KEY (`username`)
   REFERENCES `User` (`username`)
+  ON DELETE CASCADE
 );
 
 CREATE TABLE `Classroom` (
@@ -72,12 +73,13 @@ CREATE TABLE `Course` (
 
 -- if grade is null, that means student is taking the course this semester
 CREATE TABLE `Grades` (
-  `student_id` VARCHAR(250) NOT NULL,
+  `student_id` INT NOT NULL,
   `course_id` VARCHAR(250) NOT NULL,
   `grade` FLOAT,
   PRIMARY KEY (`student_id`, `course_id`),
   FOREIGN KEY (`student_id`)
-  REFERENCES `Student` (`student_id`),
+  REFERENCES `Student` (`student_id`)
+  ON DELETE CASCADE,
   FOREIGN KEY (`course_id`)
   REFERENCES `Course` (`course_id`)
 );

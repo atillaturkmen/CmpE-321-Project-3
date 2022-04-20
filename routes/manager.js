@@ -50,6 +50,16 @@ router.post('/manager/add-instructor', async (req, res) => {
     res.redirect("/manager/view-instructors");
 });
 
+router.get('/manager/delete-student', (req, res) => {
+    res.render("manager/delete-student");
+});
+
+router.post('/manager/delete-student', async (req, res) => {
+    let id = req.body.id;
+    await db.deleteStudent(id);
+    res.redirect("/manager/view-students");
+});
+
 router.get('/manager/view-students', async (req, res) => {
     let students = await db.getAllStudentsOrderedByCredits();
     res.render("manager/view-students", {students: students});
