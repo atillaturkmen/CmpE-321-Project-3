@@ -40,6 +40,7 @@ router.post('/student/add-course', async (req, res) => {
         return res.send("You need to take these courses first: " + preqsNotTaken);
     }
     // all prerequisites are satisfied
+    // quota requirement is checked with a trigger
     await db.takeCourse(username, id);
     res.redirect("/student/view-courses");
 });
