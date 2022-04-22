@@ -1,12 +1,24 @@
 const query = require("./_query");
 
 exports.dbManagerExists = async function (username) {
-    let arr = await query("SELECT * FROM Database_Manager WHERE username = ?;", [username]);
+    let arr = await query("SELECT 1 FROM Database_Manager WHERE username = ?;", [username]);
     return arr.length != 0;
 };
 
 exports.dbManagerPassCorrect = async function (username, password) {
-    let arr = await query("SELECT * FROM Database_Manager WHERE username = ? AND password = ?;", [username, password]);
+    let arr = await query("SELECT 1 FROM Database_Manager WHERE username = ? AND password = ?;", [username, password]);
+    return arr.length != 0;
+};
+
+exports.studentExists = async function (username) {
+    let arr = await query("SELECT 1 FROM Student WHERE username = ?;", [username]);
+    return arr.length != 0;
+};
+
+exports.studentPassCorrect = async function (username, password) {
+    let arr = await query(`SELECT 1 FROM Student S
+    JOIN User U ON S.username=U.username
+    WHERE U.username = ? AND password = ?;`, [username, password]);
     return arr.length != 0;
 };
 
