@@ -27,6 +27,7 @@ router.post('/student/add-course', async (req, res) => {
     if (taken) {
         return res.send("Student has taken this course!");
     }
+    // check prerequisites
     let prerequisites = await db.getPreqs(id);
     let preqsNotTaken = [];
     for (let preq of prerequisites) {
@@ -38,7 +39,9 @@ router.post('/student/add-course', async (req, res) => {
     if (preqsNotTaken.length != 0) {
         return res.send("You need to take these courses first: " + preqsNotTaken);
     }
-    res.send("you can take this course");
+    // all prerequisites are satisfied
+    await db.takeCourse(username, id);
+    res.redirect("/student/view-courses");
 });
 
 module.exports = router;
