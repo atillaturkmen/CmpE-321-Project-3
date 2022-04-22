@@ -34,7 +34,30 @@ router.post('/login/manager', async (req, res) => {
         // manager logged in
         req.session.userType = userTypes.manager;
         req.session.username = username;
-        res.redirect("/");
+        res.redirect("/manager");
+    } else {
+        res.send("wrong password");
+    }
+});
+
+router.get('/login/student', (req, res) => {
+    res.render("login/login-student");
+});
+
+router.post('/login/student', async (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    let exists = await db.studentExists(username);
+    if (!exists) {
+        return res.send("wrong username");
+    }
+    let hashedPass = sha256(password);
+    let correctPass = await db.studentPassCorrect(username, hashedPass);
+    if (correctPass) {
+        // student logged in
+        req.session.userType = userTypes.student;
+        req.session.username = username;
+        res.redirect("/student");
     } else {
         res.send("wrong password");
     }

@@ -99,3 +99,29 @@ CREATE TABLE `Prerequisites` (
   REFERENCES `Course` (`course_id`),
   CONSTRAINT allowed_prerequisites CHECK (STRCMP(prq_for, prq)=1)
 );
+
+-- trigger for course quota
+DELIMITER $$
+CREATE TRIGGER Course_Quota
+	BEFORE INSERT
+    ON Grades FOR EACH ROW
+BEGIN
+	DECLARE nof_students INT;
+    DECLARE quota INT;
+
+    SELECT COUNT(*) 
+    INTO nof_students
+    FROM Grades G
+    WHERE G.course_id=new.course_id;
+
+    SELECT C.quota
+    INTO quota
+    FROM Course C
+    WHERE C.course_id=new.course_id;
+    
+	IF nof_students >= quota THEN
+		SIGNAL SQLSTATE '45000' 
+		SET MESSAGE_TEXT = "Course quota is full!";
+	END IF;
+END$$
+DELIMITER ;
