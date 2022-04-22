@@ -38,3 +38,20 @@ exports.getCourseAverageGrade = function (id) {
     FROM Grades G JOIN Course C ON C.course_id=G.course_id 
     WHERE G.course_id=?;`, [id]);
 }
+
+exports.studentTakenCourse = async function (studentUsername, courseID) {
+    let arr = await query(`SELECT 1 FROM Grades G 
+    JOIN Student S ON S.student_id=G.student_id 
+    WHERE S.username=?
+    AND G.course_id=?
+    AND G.grade IS NOT NULL;`, [studentUsername, courseID]);
+    return arr.length != 0;
+}
+
+exports.getPreqs = async function (courseID) {
+    let arr = await query(`SELECT prq FROM prerequisites WHERE prq_for=?;`, [courseID]);
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i]["prq"];
+    }
+    return arr;
+}
