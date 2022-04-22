@@ -8,8 +8,14 @@ function initializeButtons(route) {
     let buttons = Array.from(children).filter(child => child.nodeName == "BUTTON");
     buttons.forEach((button) => {
         let id = button.id;
-        document.getElementById(id).onclick = function () {
-            window.location = `${route}/${id}`;
-        };
+        if (id == "logout") {
+            document.getElementById("logout").onclick = function () {
+                window.location = "/logout";
+            };
+        } else {
+            document.getElementById(id).onclick = function () {
+                window.location = `${route}/${id}`;
+            };
+        }
     });
 }

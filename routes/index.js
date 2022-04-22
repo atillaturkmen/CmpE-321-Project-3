@@ -14,6 +14,12 @@ router.get('/', (req, res) => {
     }
 });
 
+router.get('/logout', (req, res) => {
+    delete req.session.userType;
+    delete req.session.username;
+    res.redirect("/login");
+});
+
 const login = require("./login");
 router.get("/login*", login);
 router.post("/login*", login);
