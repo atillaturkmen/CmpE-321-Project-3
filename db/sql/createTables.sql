@@ -2,6 +2,11 @@
 -- Creates tables for 2. project of CmpE 321 course
 -- Written for MYSQL
 
+-- schema name
+-- student id of Atilla and Onur to avoid name conflicts
+CREATE DATABASE IF NOT EXISTS 2019400216_2018400147;
+USE 2019400216_2018400147;
+
 -- we couldn't limit row number in this table (limit should be 4)
 CREATE TABLE `Database_Manager` (
   `username` VARCHAR(250) NOT NULL, -- 250 is greatest varchar length that is indexable

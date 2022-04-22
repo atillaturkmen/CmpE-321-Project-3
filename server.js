@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require("path");
 const session = require('express-session');
 require('express-async-errors'); // for handling all promise rejects
 
@@ -21,8 +20,8 @@ app.use(session({
 }
 ));
 
-// for serving the static folder
-app.use('/public', express.static(path.join(__dirname, 'public')));
+// for serving the public folder
+app.use(express.static('public'));
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);

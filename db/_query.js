@@ -6,8 +6,8 @@ const db = mysql.createConnection({
     host: "localhost",
     user: process.env.MYSQL_USERNAME,
     password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE_NAME,
     port: process.env.MYSQL_PORT,
+    database: "2019400216_2018400147",
     multipleStatements: true,
 });
 

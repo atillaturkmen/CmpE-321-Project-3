@@ -19,6 +19,7 @@ NodeJS and MySQL are required to run the server.
 - Change mysql port and database if they are different in your computer. The values in the template are default values and you probably don't need to change them.
 - Run `npm install` to install required packages.
 - Finally type `node server.js` to start the server.
+- Server runs on port 80.
 
 ## Requirements Progress
 
