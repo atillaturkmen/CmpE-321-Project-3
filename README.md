@@ -41,7 +41,7 @@ NodeJS and MySQL are required to run the server.
 16. [ ] Instructor Update Course Name
 17. [ ] Instructor Give Grade (**Trigger**)
 18. [ ] Student List All Courses
-19. [ ] Student Add Course
+19. [X] Student Add Course
 20. [ ] Student View Courses
 21. [ ] Student Search Course
 22. [ ] Student Filter Course (**Stored Procedure**)
