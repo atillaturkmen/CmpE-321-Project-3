@@ -15,8 +15,11 @@ exports.addInstructor = function (username, password, name, surname, email, depa
 };
 
 exports.takeCourse = function (username, courseID) {
-    return query(`
-    INSERT INTO Grades VALUES 
-    ((SELECT student_id FROM Student WHERE username=?), ?, NULL);
-    `, [username, courseID]);
+    return query(`INSERT INTO Grades VALUES 
+    ((SELECT student_id FROM Student WHERE username=?), ?, NULL);`, [username, courseID]);
+};
+
+exports.addCourse = function (course_id, name, credits, quota, slot, classroom_id, instructor_username) {
+    return query(`INSERT INTO Course VALUES (?, ?, ?, ?, ?, ?, ?);`,
+    [course_id, name, credits, quota, slot, classroom_id, instructor_username]);
 };

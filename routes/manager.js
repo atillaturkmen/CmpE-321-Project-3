@@ -75,6 +75,11 @@ router.get('/manager/view-students', async (req, res) => {
     res.render("manager/view-students", {students: students});
 });
 
+router.get('/manager/view-instructors', async (req, res) => {
+    let instructors = await db.getAllInstructors();
+    res.render("manager/view-instructors", {instructors: instructors});
+});
+
 router.get('/manager/view-student-grades', async (req, res) => {
     res.render("manager/view-student-grades", {grades: undefined});
 });
@@ -83,6 +88,16 @@ router.post('/manager/view-student-grades', async (req, res) => {
     let id = req.body.id;
     let grades = await db.getStudentGrades(id);
     res.render("manager/view-student-grades", {grades: grades});
+});
+
+router.get('/manager/view-instructor-courses', async (req, res) => {
+    res.render("manager/view-instructor-courses", {courses: undefined});
+});
+
+router.post('/manager/view-instructor-courses', async (req, res) => {
+    let username = req.body.id;
+    let courses = await db.getInstructorCourses(username);
+    res.render("manager/view-instructor-courses", {courses: courses});
 });
 
 router.get('/manager/view-course-grade', async (req, res) => {

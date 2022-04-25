@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <link rel="stylesheet" href="/css/table.css">
+</head>
+
+<body> 
+    <% if(!courses){ %>
+        <body>Course not found!</body>
+    <% } else { %>  
+        <table>
+            <tr>
+            <th>Course ID</th>
+            <th>Course Name</th>
+            <th>Classroom ID</th>
+            <th>Time Slot</th>
+            <th>Quota</th>
+            <th>Prerequisite List</th>
+            </tr>
+            <% for (var i = 0; i < courses.length; i++) { %>
+                <tr>
+                    <td><%= courses[i].course_id %></td>
+                    <td><%= courses[i].name %></td>
+                    <td><%= courses[i].classroom_id %></td>
+                    <td><%= courses[i].slot %></td>
+                    <td><%= courses[i].quota %></td>
+                    <td><%= courses[i].preq %></td>
+                </tr>
+            <% } %>
+        </table>
+    <% } %>
+</body>

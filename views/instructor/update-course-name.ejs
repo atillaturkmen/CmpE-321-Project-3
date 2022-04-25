@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/instructor/update-course-name" method="POST" autocomplete="off">
+        <label for="course_id">Course ID:</label><br>
+        <input type="text" name="course_id" required><br>
+        <label for="name">New Course Name: </label><br>
+        <input type="text" name="name" required><br>
+        <button type="submit">Update Course Name</button>
+    </form>
+</body>

@@ -125,3 +125,23 @@ BEGIN
 	END IF;
 END$$
 DELIMITER ;
+
+-- trigger for classroom capacity check
+DELIMITER $$
+CREATE TRIGGER Classroom_Quota_Exceeded
+	BEFORE INSERT
+    ON Course FOR EACH ROW
+BEGIN
+    DECLARE classroom_capacity INT;
+
+    SELECT C.capacity
+    INTO classroom_capacity
+    FROM Classroom C
+    WHERE C.classroom_id=new.classroom_id;
+    
+	IF (classroom_capacity < new.quota) THEN
+		SIGNAL SQLSTATE '45000' 
+		SET MESSAGE_TEXT = "Course quota exceeds classroom capacity!";
+	END IF;
+END$$
+DELIMITER ;

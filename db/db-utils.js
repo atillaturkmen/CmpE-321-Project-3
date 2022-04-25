@@ -3,4 +3,5 @@ module.exports = {
     ...require('./select'),
     ...require('./delete'),
     ...require('./update'),
+    ...require('./check'),
 };

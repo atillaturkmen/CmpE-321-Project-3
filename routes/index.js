@@ -28,6 +28,10 @@ const manager = require("./manager");
 router.get("/manager*", manager);
 router.post("/manager*", manager);
 
+const instructor = require("./instructor");
+router.get("/instructor*", instructor);
+router.post("/instructor*", instructor);
+
 const student = require("./student");
 router.get("/student*", student);
 router.post("/student*", student);

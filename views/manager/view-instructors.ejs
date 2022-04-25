@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <link rel="stylesheet" href="/css/table.css">
+</head>
+
+<body>
+    <table>
+        <tr>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Department</th>
+          <th>Title</th>
+        </tr>
+        <% for (var i = 0; i < instructors.length; i++) { %>
+            <tr>
+                <td><%= instructors[i].username %></td>
+                <td><%= instructors[i].name %></td>
+                <td><%= instructors[i].surname %></td>
+                <td><%= instructors[i].email %></td>
+                <td><%= instructors[i].department_id %></td>
+                <td><%= instructors[i].title %></td>
+            </tr>
+        <% } %>
+      </table>
+</body>
