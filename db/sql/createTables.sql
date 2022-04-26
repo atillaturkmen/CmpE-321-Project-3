@@ -145,3 +145,22 @@ BEGIN
 	END IF;
 END$$
 DELIMITER ;
+
+-- trigger for database manager limit
+DELIMITER $$
+CREATE TRIGGER Database_Manager_Limit
+	BEFORE INSERT
+    ON Database_Manager FOR EACH ROW
+BEGIN
+	DECLARE nof_managers INT;
+
+    SELECT COUNT(*)
+    INTO nof_managers
+    FROM Database_Manager;
+
+	IF nof_managers >= 4 THEN
+		SIGNAL SQLSTATE '45000' 
+		SET MESSAGE_TEXT = "There cannot be more than 4 database managers!";
+	END IF;
+END$$
+DELIMITER ;
