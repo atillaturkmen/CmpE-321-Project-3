@@ -80,3 +80,9 @@ exports.getPreqs = async function (courseID) {
     }
     return arr;
 }
+
+exports.getAvailableClassroomsForSlot = function (slot) {
+    return query(`SELECT * FROM Classroom
+    WHERE classroom_id NOT IN
+    (SELECT classroom_id FROM Course WHERE slot=?);`, [slot]);
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/instructor/view-available-classroom" method="POST" autocomplete="off">
+        <label for="slot">Slot:</label><br>
+        <input type="text" name="slot" required><br>
+        <button type="submit">View Available Classrooms</button>
+    </form>
+</body>

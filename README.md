@@ -33,8 +33,8 @@ NodeJS and MySQL are required to run the server.
 7. [X] DBM View Student Grades
 8. [X] DBM View Courses of Instructor
 9. [X] DBM Grade Average of Course
-10. [X] Instructor Login 
-11. [ ] Instructor View Available Classroom
+10. [X] Instructor Login
+11. [X] Instructor View Available Classroom
 12. [X] Instructor Add Course (**Trigger**)
 13. [ ] Instructor Add Prerequisite
 14. [X] Instructor View Courses

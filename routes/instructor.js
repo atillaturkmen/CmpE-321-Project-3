@@ -16,6 +16,16 @@ router.get('/instructor', (req, res) => {
     res.render("instructor/instructor-menu");
 });
 
+router.get('/instructor/view-available-classroom', (req, res) => {
+    res.render("instructor/view-available-classroom-form");
+});
+
+router.post('/instructor/view-available-classroom', async (req, res) => {
+    let slot = req.body.slot;
+    let classrooms = await db.getAvailableClassroomsForSlot(slot);
+    res.render("instructor/view-available-classroom-table", {classrooms: classrooms});
+});
+
 router.get('/instructor/add-course', (req, res) => {
     res.render("instructor/add-course");
 });
@@ -55,16 +65,12 @@ router.post('/instructor/update-course-name', async (req, res) => {
     let error_check = await db.updateCourseNameCheck(course_id, instructor_username);
     if (error_check == 1) {
         return res.send("Course not found!");
-    } else if (error_check == 2) {
+    } else if (error_check == 2) {
         return res.send("This course is given by another instructor!");
     }
-    // erronous cases are checked
+    // erroneous cases are checked
     await db.updateCourseName(course_id, name);
     res.redirect("/instructor/view-courses");
 });
-
-
-
-
 
 module.exports = router;

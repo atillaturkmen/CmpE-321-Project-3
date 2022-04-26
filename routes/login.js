@@ -87,6 +87,4 @@ router.post('/login/student', async (req, res) => {
     }
 });
 
-
-
 module.exports = router;
