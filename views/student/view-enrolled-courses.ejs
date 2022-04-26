@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <link rel="stylesheet" href="/css/table.css">
+</head>
+
+<body> 
+    <table>
+        <tr>
+        <th>Course ID</th>
+        <th>Course Name</th>
+        <th>Grade</th>
+        </tr>
+        <% for (var i = 0; i < courses.length; i++) { %>
+            <tr>
+                <td><%= courses[i].course_id %></td>
+                <td><%= courses[i].name %></td>
+                <td><%= courses[i].grade %></td>
+            </tr>
+        <% } %>
+    </table>
+</body>

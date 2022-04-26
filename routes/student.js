@@ -16,6 +16,17 @@ router.get('/student', (req, res) => {
     res.render("student/student-menu");
 });
 
+router.get('/student/list-courses', async (req, res) => {
+    let courses = await db.getAllCourses();
+    for (let course of courses){
+        let preq = await db.getPreqs(course.course_id);
+        let course_name = await db.getCourseName(course.course_id);
+        course.preq = preq;
+        course.course_name = course_name;
+    }
+    res.render("student/list-courses", {courses: courses});
+});
+
 router.get('/student/add-course', (req, res) => {
     res.render("student/add-course");
 });
@@ -42,7 +53,14 @@ router.post('/student/add-course', async (req, res) => {
     // all prerequisites are satisfied
     // quota requirement is checked with a trigger
     await db.takeCourse(username, id);
-    res.redirect("/student/view-courses");
+    res.redirect("/student/view-enrolled-courses");
+});
+
+router.get('/student/view-enrolled-courses', async (req, res) => {
+    let username = req.session.username;
+    let student_id = await db.getStudentID(username);
+    let courses = await db.getEnrolledCourses(student_id);
+    res.render("student/view-enrolled-courses", {courses: courses});
 });
 
 module.exports = router;

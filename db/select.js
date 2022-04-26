@@ -1,3 +1,4 @@
+const { student } = require("../util/user-types");
 const query = require("./_query");
 
 exports.getAllInstructors = function () {
@@ -37,6 +38,38 @@ exports.getInstructorCoursesOrderedByCourseID = async function (username){
         WHERE instructor_username=?
         ORDER BY course_id ASC;`, [username]);
     return arr;
+}
+
+exports.getAllCourses = async function(){
+    let arr = await query(`SELECT course_id, C.name, U.surname, D.name, credits, classroom_id, slot, quota
+        FROM Course C
+        INNER JOIN User U ON C.instructor_username=U.username
+        INNER JOIN Department D ON U.department_id = D.department_id;`);
+    return arr;
+}
+
+exports.getCourseName = async function(course_id){
+    let course_name = await query(`SELECT name FROM Course C WHERE C.course_id = ?;`, [course_id]);
+    for (let i = 0; i < course_name.length; i++) {
+        course_name[i] = course_name[i]["name"];
+    }
+    return course_name;
+}
+
+exports.getEnrolledCourses = async function(student_id){
+    let arr = await query(`SELECT C.course_id, name, G.grade 
+        FROM Course C
+        INNER JOIN Grades G ON G.course_id=C.course_id
+        WHERE G.student_id = ?;`, [student_id]);
+    return arr;
+}
+
+exports.getStudentID = async function(username){
+    let student_id = await query(`SELECT student_id FROM Student S WHERE S.username = ?;`, [username]);
+    for (let i = 0; i < student_id.length; i++) {
+        student_id[i] = student_id[i]["student_id"];
+    }
+    return student_id;
 }
 
 exports.getPreqs = async function (courseID) {
