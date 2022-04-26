@@ -25,10 +25,11 @@ exports.getStudentGrades = function (id) {
     WHERE student_id=?;`, [id]);
 }
 
-exports.getCourseAverageGrade = function (id) {
-    return query(`SELECT C.name, C.course_id, AVG(grade) AS average 
+exports.getCourseAverageGrade = async function (id) {
+    let arr = await query(`SELECT C.name, C.course_id, AVG(grade) AS average 
     FROM Grades G JOIN Course C ON C.course_id=G.course_id 
     WHERE G.course_id=?;`, [id]);
+    return arr[0];
 }
 
 exports.getInstructorCoursesOrderedByCourseID = async function (username){

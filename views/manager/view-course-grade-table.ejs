@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <link rel="stylesheet" href="/css/table.css">
+</head>
+
+<body>
+  <table>
+    <tr>
+      <th>Course ID</th>
+      <th>Course Name</th>
+      <th>Average Grade</th>
+    </tr>
+    <tr>
+        <td><%= averageGrade.course_id %></td>
+        <td><%= averageGrade.name %></td>
+        <td><%= averageGrade.average %></td>
+    </tr>
+  </table>
+</body>

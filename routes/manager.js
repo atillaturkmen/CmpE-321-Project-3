@@ -81,33 +81,33 @@ router.get('/manager/view-instructors', async (req, res) => {
 });
 
 router.get('/manager/view-student-grades', async (req, res) => {
-    res.render("manager/view-student-grades", {grades: undefined});
+    res.render("manager/view-student-grades-form");
 });
 
 router.post('/manager/view-student-grades', async (req, res) => {
     let id = req.body.id;
     let grades = await db.getStudentGrades(id);
-    res.render("manager/view-student-grades", {grades: grades});
+    res.render("manager/view-student-grades-table", {grades: grades});
 });
 
 router.get('/manager/view-instructor-courses', async (req, res) => {
-    res.render("manager/view-instructor-courses", {courses: undefined});
+    res.render("manager/view-instructor-courses-form");
 });
 
 router.post('/manager/view-instructor-courses', async (req, res) => {
-    let username = req.body.id;
+    let username = req.body.instructor_username;
     let courses = await db.getInstructorCourses(username);
-    res.render("manager/view-instructor-courses", {courses: courses});
+    res.render("manager/view-instructor-courses-table", {courses: courses});
 });
 
 router.get('/manager/view-course-grade', async (req, res) => {
-    res.render("manager/view-course-grade", {averageGrade: undefined});
+    res.render("manager/view-course-grade-form");
 });
 
 router.post('/manager/view-course-grade', async (req, res) => {
     let course_id = req.body.id;
     let averageGrade = await db.getCourseAverageGrade(course_id);
-    res.render("manager/view-course-grade", {averageGrade: averageGrade[0]});
+    res.render("manager/view-course-grade-table", {averageGrade: averageGrade});
 });
 
 module.exports = router;

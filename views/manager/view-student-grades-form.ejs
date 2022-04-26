@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/manager/view-student-grades" method="POST" autocomplete="off">
+        <label for="id">Student ID:</label><br>
+        <input type="number" name="id" required><br>
+        <button type="submit">View Student Grades</button>
+    </form>
+</body>
