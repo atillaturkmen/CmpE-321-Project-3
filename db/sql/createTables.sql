@@ -7,7 +7,8 @@
 CREATE DATABASE IF NOT EXISTS 2019400216_2018400147;
 USE 2019400216_2018400147;
 
--- we couldn't limit row number in this table (limit should be 4)
+-- database manager limit is 4
+-- it is enforced by a trigger
 CREATE TABLE `Database_Manager` (
   `username` VARCHAR(250) NOT NULL, -- 250 is greatest varchar length that is indexable
   `password` VARCHAR(250) NOT NULL,
