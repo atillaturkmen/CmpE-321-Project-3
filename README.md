@@ -14,9 +14,10 @@
 NodeJS and MySQL are required to run the server.
 
 - After configuring the MySQL server, run `createTables.sql` file to create the tables. (can be run on MySQL Workbench)
+- Tables are created in a new schema that is named after student numbers of authors. Server uses this schema.
 - Copy the template.env file and rename the copy as '.env'.
 - Write your MySQL password and username in .env.
-- Change mysql port and database if they are different in your computer. The values in the template are default values and you probably don't need to change them.
+- Change MySQL port if it is different in your computer. Default MySQL port is 3306.
 - Run `npm install` to install required packages.
 - Finally type `node server.js` to start the server.
 - Server runs on port 80.
