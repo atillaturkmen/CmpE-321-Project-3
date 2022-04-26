@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <link rel="stylesheet" href="/css/table.css">
+</head>
+
+<body> 
+    <% if(students.length == 0){ %>
+        <body>No students in this classroom.</body>
+    <% } else { %>  
+        <table>
+            <tr>
+            <th>Username</th>
+            <th>Student ID</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Surname</th>
+            </tr>
+            <% for (var i = 0; i < students.length; i++) { %>
+                <tr>
+                    <td><%= students[i].username %></td>
+                    <td><%= students[i].student_id %></td>
+                    <td><%= students[i].email%></td>
+                    <td><%= students[i].name %></td>
+                    <td><%= students[i].surname %></td>
+                </tr>
+            <% } %>
+        </table>
+    <% } %>
+</body>
+</html>

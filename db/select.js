@@ -73,8 +73,8 @@ exports.getStudentID = async function(username){
     return student_id;
 }
 
-exports.getPreqs = async function (courseID) {
-    let arr = await query(`SELECT prq FROM prerequisites WHERE prq_for=?;`, [courseID]);
+exports.getPreqs = async function (course_id) {
+    let arr = await query(`SELECT prq FROM prerequisites WHERE prq_for=?;`, [course_id]);
     for (let i = 0; i < arr.length; i++) {
         arr[i] = arr[i]["prq"];
     }
@@ -85,4 +85,12 @@ exports.getAvailableClassroomsForSlot = function (slot) {
     return query(`SELECT * FROM Classroom
     WHERE classroom_id NOT IN
     (SELECT classroom_id FROM Course WHERE slot=?);`, [slot]);
+}
+
+exports.getStudentsInCourse = function (course_id) {
+    return query(`SELECT U.username, S.student_id, email, name, surname
+        FROM Grades G
+        JOIN Student S ON G.student_id=S.student_id
+        JOIN User U ON S.username=U.username
+        WHERE course_id=?;`, [course_id]);
 }

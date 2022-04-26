@@ -43,7 +43,16 @@ exports.studentTakenCourse = async function (studentUsername, courseID) {
     return arr.length != 0;
 }
 
-exports.updateCourseNameCheck = async function (course_id, instructor_username) {
+/**
+ * For checking course of instructor
+ * @param {*} course_id 
+ * @param {*} instructor_username 
+ * @returns 
+ * 1 if course does not exist, 
+ * 2 if course is not given by this instructor, 
+ * 0 if course exists and given by this instructor
+ */
+exports.courseInstructorCheck = async function (course_id, instructor_username) {
     let test1 = await query(`SELECT 1 FROM Course C 
     WHERE C.course_id=?;`, [course_id]);
     if (test1 == 0){

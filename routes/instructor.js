@@ -65,6 +65,24 @@ router.get('/instructor/view-courses', async (req, res) => {
     res.render("instructor/view-courses", {courses: courses});
 });
 
+router.get('/instructor/view-enrolled-students', async (req, res) => {
+    res.render("instructor/view-enrolled-students-form");
+});
+
+router.post('/instructor/view-enrolled-students', async (req, res) => {
+    let course_id = req.body.course_id;
+    let instructor_username = req.session.username;
+    let error_check = await db.courseInstructorCheck(course_id, instructor_username);
+    if (error_check == 1) {
+        return res.send("Course not found!");
+    } else if (error_check == 2) {
+        return res.send("This course is given by another instructor!");
+    }
+    // erroneous cases are checked
+    let students = await db.getStudentsInCourse(course_id);
+    res.render("instructor/view-enrolled-students-table", {students: students});
+});
+
 router.get('/instructor/update-course-name', async (req, res) => {
     res.render("instructor/update-course-name");
 });
@@ -73,7 +91,7 @@ router.post('/instructor/update-course-name', async (req, res) => {
     let course_id = req.body.course_id;
     let name = req.body.name;
     let instructor_username = req.session.username;
-    let error_check = await db.updateCourseNameCheck(course_id, instructor_username);
+    let error_check = await db.courseInstructorCheck(course_id, instructor_username);
     if (error_check == 1) {
         return res.send("Course not found!");
     } else if (error_check == 2) {
