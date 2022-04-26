@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/instructor/add-prerequisite" method="POST" autocomplete="off">
+        <label for="prq_for">Course ID:</label><br>
+        <input type="text" name="prq_for" required><br>
+        <label for="prq">Course ID of Prerequisite:</label><br>
+        <input type="text" name="prq" required><br>
+        <button type="submit">Add Prerequisite</button>
+    </form>
+</body>

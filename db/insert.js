@@ -23,3 +23,8 @@ exports.addCourse = function (course_id, name, credits, quota, slot, classroom_i
     return query(`INSERT INTO Course VALUES (?, ?, ?, ?, ?, ?, ?);`,
     [course_id, name, credits, quota, slot, classroom_id, instructor_username]);
 };
+
+exports.addPrq = function (prq_for, prq) {
+    return query(`INSERT INTO Prerequisites VALUES (?, ?);`,
+    [prq_for, prq]);
+};

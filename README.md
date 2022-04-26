@@ -36,7 +36,7 @@ NodeJS and MySQL are required to run the server.
 10. [X] Instructor Login
 11. [X] Instructor View Available Classroom
 12. [X] Instructor Add Course (**Trigger**)
-13. [ ] Instructor Add Prerequisite
+13. [X] Instructor Add Prerequisite
 14. [X] Instructor View Courses
 15. [ ] Instructor View Students in Course
 16. [X] Instructor Update Course Name

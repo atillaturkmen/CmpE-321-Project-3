@@ -26,6 +26,17 @@ router.post('/instructor/view-available-classroom', async (req, res) => {
     res.render("instructor/view-available-classroom-table", {classrooms: classrooms});
 });
 
+router.get('/instructor/add-prerequisite', (req, res) => {
+    res.render("instructor/add-prerequisite");
+});
+
+router.post('/instructor/add-prerequisite', async (req, res) => {
+    let prq_for = req.body.prq_for;
+    let prq = req.body.prq;
+    await db.addPrq(prq_for, prq);
+    res.redirect("/instructor/view-courses");
+});
+
 router.get('/instructor/add-course', (req, res) => {
     res.render("instructor/add-course");
 });
