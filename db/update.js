@@ -7,3 +7,7 @@ exports.updateInstructorTitle = function (username, title) {
 exports.updateCourseName = function (course_id, name) {
     return query("UPDATE COURSE SET name = ? WHERE course_id = ?", [name,course_id]);
 };
+
+exports.giveGrade = function (grade, course_id, student_id) {
+    return query("UPDATE Grades SET grade=? WHERE course_id=? AND student_id=?;", [grade, course_id, student_id]);
+};

@@ -102,4 +102,24 @@ router.post('/instructor/update-course-name', async (req, res) => {
     res.redirect("/instructor/view-courses");
 });
 
+router.get('/instructor/give-grade', async (req, res) => {
+    res.render("instructor/give-grade");
+});
+
+router.post('/instructor/give-grade', async (req, res) => {
+    let course_id = req.body.course_id;
+    let student_id = req.body.student_id;
+    let grade = req.body.grade;
+    let instructor_username = req.session.username;
+    let error_check = await db.courseInstructorCheck(course_id, instructor_username);
+    if (error_check == 1) {
+        return res.send("Course not found!");
+    } else if (error_check == 2) {
+        return res.send("This course is given by another instructor!");
+    }
+    // erroneous cases are checked
+    await db.giveGrade(grade, course_id, student_id);
+    res.redirect("/instructor/view-courses");
+});
+
 module.exports = router;

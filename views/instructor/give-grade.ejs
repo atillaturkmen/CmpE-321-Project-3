@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/instructor/give-grade" method="POST" autocomplete="off">
+        <label for="course_id">Course ID:</label><br>
+        <input type="text" name="course_id" required><br>
+        <label for="student_id">Student ID:</label><br>
+        <input type="text" name="student_id" required><br>
+        <label for="grade">Grade:</label><br>
+        <input type="number" step="any" name="grade" required><br>
+        <button type="submit">Give Grade</button>
+    </form>
+</body>
+</html>
