@@ -1,5 +1,5 @@
 -- Atilla Türkmen, Onur Kömürcü
--- Creates tables for 2. project of CmpE 321 course
+-- Creates tables for 3. project of CmpE 321 course
 -- Written for MYSQL
 
 -- schema name
