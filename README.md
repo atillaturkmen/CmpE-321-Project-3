@@ -48,5 +48,5 @@ NodeJS and MySQL are required to run the server.
 18. [X] Student List All Courses
 19. [X] Student Add Course
 20. [X] Student View Enrolled Courses
-21. [ ] Student Search Course
+21. [X] Student Search Course
 22. [ ] Student Filter Courses (**Stored Procedure**)

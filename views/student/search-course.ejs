@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/student/search-course" method="POST" autocomplete="off">
+        <label for="keyword">Keyword:</label><br>
+        <input type="text" name="keyword" required><br>
+        <button type="submit">Search Course</button>
+    </form>
+</body>
+</html>

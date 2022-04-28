@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/db-utils");
 const userTypes = require("../util/user-types");
+const addPrerequisites = require("../util/add-prerequisites");
 
 // only students can see these pages
 router.use((req, res, next) => {
@@ -18,12 +19,7 @@ router.get('/student', (req, res) => {
 
 router.get('/student/list-courses', async (req, res) => {
     let courses = await db.getAllCourses();
-    for (let course of courses){
-        let preq = await db.getPreqs(course.course_id);
-        let course_name = await db.getCourseName(course.course_id);
-        course.preq = preq;
-        course.course_name = course_name;
-    }
+    await addPrerequisites(courses);
     res.render("student/list-courses", {courses: courses});
 });
 
@@ -61,6 +57,17 @@ router.get('/student/view-enrolled-courses', async (req, res) => {
     let student_id = await db.getStudentID(username);
     let courses = await db.getEnrolledCourses(student_id);
     res.render("student/view-enrolled-courses", {courses: courses});
+});
+
+router.get('/student/search-course', (req, res) => {
+    res.render("student/search-course");
+});
+
+router.post('/student/search-course', async (req, res) => {
+    let keyword = req.body.keyword;
+    let courses = await db.searchCourse(keyword);
+    await addPrerequisites(courses);
+    res.render("student/list-courses", {courses: courses});
 });
 
 module.exports = router;
