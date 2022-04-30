@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/db-utils");
 const userTypes = require("../util/user-types");
+const addPrerequisites = require("../util/add-prerequisites");
 
 // only instructors can see these pages
 router.use((req, res, next) => {
@@ -58,10 +59,7 @@ router.post('/instructor/add-course', async (req, res) => {
 router.get('/instructor/view-courses', async (req, res) => {
     let username = req.session.username;
     let courses = await db.getInstructorCoursesOrderedByCourseID(username);
-    for (let course of courses){
-        let preq = await db.getPreqs(course.course_id);
-        course.preq = preq;
-    }
+    await addPrerequisites(courses);
     res.render("instructor/view-courses", {courses: courses});
 });
 
