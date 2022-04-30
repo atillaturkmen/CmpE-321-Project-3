@@ -68,7 +68,7 @@ router.post('/manager/update-instructor', async (req, res) => {
     let username = req.body.username;
     let title = req.body.title;
     await db.updateInstructorTitle(username, title);
-    res.redirect("/manager/view-instructor");
+    res.redirect("/manager/view-instructors");
 });
 
 router.get('/manager/view-students', async (req, res) => {
