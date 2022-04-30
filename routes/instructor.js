@@ -6,7 +6,7 @@ const userTypes = require("../util/user-types");
 // only instructors can see these pages
 router.use((req, res, next) => {
     if (req.session.userType != userTypes.instructor) {
-        res.redirect("/login");
+        res.redirect("/");
     } else {
         next();
     }

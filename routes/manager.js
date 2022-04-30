@@ -7,7 +7,7 @@ const sha256 = require("../util/sha256");
 // only managers can see these pages
 router.use((req, res, next) => {
     if (req.session.userType != userTypes.manager) {
-        res.redirect("/login");
+        res.redirect("/");
     } else {
         next();
     }

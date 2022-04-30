@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const query = require("./_query");
 
 exports.getAllInstructors = function () {
@@ -100,4 +101,9 @@ exports.searchCourse = function (keyword) {
         INNER JOIN User U ON C.instructor_username=U.username
         INNER JOIN Department D ON U.department_id = D.department_id
         WHERE C.name LIKE CONCAT('%', ?, '%');`, [keyword]);
+}
+
+exports.filterCourses = async function (department_id, campus, min_credits, max_credits) {
+    let result = await query(`CALL filterCourses(?, ?, ?, ?);`, [department_id, campus, min_credits, max_credits]);
+    return result[0];
 }

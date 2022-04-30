@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+    <link rel="stylesheet" href="/css/table.css">
+</head>
+
+<body>
+    <table>
+        <tr>
+        <th>Course ID</th>
+        <th>Course Name</th>
+        <th>Instructor</th>
+        <th>Credits</th>
+        <th>Classroom ID</th>
+        <th>Time Slot</th>
+        <th>Quota</th>
+        <th>Prerequisite List</th>
+        <th>Department</th>
+        <th>Campus</th>
+        </tr>
+        <% for (var i = 0; i < courses.length; i++) { %>
+            <tr>
+                <td><%= courses[i].course_id %></td>
+                <td><%= courses[i].course_name %></td>
+                <td><%= courses[i].instructor_full_name %></td>
+                <td><%= courses[i].credits %></td>
+                <td><%= courses[i].classroom_id %></td>
+                <td><%= courses[i].slot %></td>
+                <td><%= courses[i].quota %></td>
+                <td><%= courses[i].preq %></td>
+                <td><%= courses[i].department_id %></td>
+                <td><%= courses[i].campus %></td>
+            </tr>
+        <% } %>
+    </table>
+</body>
+</html>

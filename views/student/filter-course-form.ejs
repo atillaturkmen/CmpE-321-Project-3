@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/header'); -%>
+</head>
+
+<body>
+    <form action="/student/filter-course" method="POST" autocomplete="off">
+        <label for="department_id">Department ID:</label><br>
+        <input type="text" name="department_id" required><br>
+        <label for="campus">Campus:</label><br>
+        <input type="text" name="campus" required><br>
+        <label for="min_credits">Minimum Credits:</label><br>
+        <input type="text" name="min_credits" required><br>
+        <label for="max_credits">Maximum Credits:</label><br>
+        <input type="text" name="max_credits" required><br>
+        <button type="submit">Filter Courses</button>
+    </form>
+</body>
+</html>

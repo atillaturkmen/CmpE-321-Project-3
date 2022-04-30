@@ -19,6 +19,7 @@ NodeJS and MySQL are required to run the server.
 
 - After configuring the MySQL server, run `createTables.sql` file to create the tables. (can be run on MySQL Workbench)
 - Tables are created in a new schema that is named after student numbers of authors. Server uses this schema.
+- Then run `createTriggers.sql` and `createProcedures.sql` to create necessary triggers and procedures.
 - Copy the template.env file and rename the copy as '.env'.
 - Write your MySQL password and username in .env.
 - Change MySQL port if it is different in your computer. Default MySQL port is 3306.
@@ -49,4 +50,4 @@ NodeJS and MySQL are required to run the server.
 19. [X] Student Add Course
 20. [X] Student View Enrolled Courses
 21. [X] Student Search Course
-22. [ ] Student Filter Courses (**Stored Procedure**)
+22. [X] Student Filter Courses (**Stored Procedure**)

@@ -7,7 +7,7 @@ const addPrerequisites = require("../util/add-prerequisites");
 // only students can see these pages
 router.use((req, res, next) => {
     if (req.session.userType != userTypes.student) {
-        res.redirect("/login");
+        res.redirect("/");
     } else {
         next();
     }
@@ -68,6 +68,20 @@ router.post('/student/search-course', async (req, res) => {
     let courses = await db.searchCourse(keyword);
     await addPrerequisites(courses);
     res.render("student/list-courses", {courses: courses});
+});
+
+router.get('/student/filter-course', (req, res) => {
+    res.render("student/filter-course-form");
+});
+
+router.post('/student/filter-course', async (req, res) => {
+    let department_id = req.body.department_id;
+    let campus = req.body.campus;
+    let min_credits = req.body.min_credits;
+    let max_credits = req.body.max_credits;
+    let courses = await db.filterCourses(department_id, campus, min_credits, max_credits);
+    await addPrerequisites(courses);
+    res.render("student/filter-course-table", {courses: courses});
 });
 
 module.exports = router;
