@@ -17,9 +17,9 @@
 
 NodeJS and MySQL are required to run the server.
 
-- After configuring the MySQL server, run `createTables.sql` file to create the tables. (can be run on MySQL Workbench)
+- After configuring the MySQL server, run `node db/init-db.js` to create tables, triggers and procedures.
 - Tables are created in a new schema that is named after student numbers of authors. Server uses this schema.
-- Then run `createTriggers.sql` and `createProcedures.sql` to create necessary triggers and procedures.
+- The schema can later be deleted by running `node db/drop-db.js`.
 - Copy the template.env file and rename the copy as '.env'.
 - Write your MySQL password and username in .env.
 - Change MySQL port if it is different in your computer. Default MySQL port is 3306.

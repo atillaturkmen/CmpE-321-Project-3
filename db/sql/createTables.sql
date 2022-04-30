@@ -9,19 +9,19 @@ USE 2019400216_2018400147;
 
 -- database manager limit is 4
 -- it is enforced by a trigger
-CREATE TABLE `Database_Manager` (
+CREATE TABLE IF NOT EXISTS `Database_Manager` (
   `username` VARCHAR(250) NOT NULL, -- 250 is greatest varchar length that is indexable
   `password` VARCHAR(250) NOT NULL,
   PRIMARY KEY (`username`)
 );
 
-CREATE TABLE `Department` (
+CREATE TABLE IF NOT EXISTS `Department` (
   `department_id` VARCHAR(250) NOT NULL,
   `name` VARCHAR(250) NOT NULL UNIQUE,
   PRIMARY KEY (`department_id`)
 );
 
-CREATE TABLE `User` (
+CREATE TABLE IF NOT EXISTS `User` (
   `username` VARCHAR(250) NOT NULL,
   `password` VARCHAR(250) NOT NULL,
   `name` VARCHAR(250) NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `User` (
   REFERENCES `Department` (`department_id`)
 );
 
-CREATE TABLE `Instructor` (
+CREATE TABLE IF NOT EXISTS `Instructor` (
   `username` VARCHAR(250) NOT NULL,
   `title` VARCHAR(250) NOT NULL,
   CONSTRAINT allowed_instructor_titles CHECK (title='Assistant Professor' OR title='Associate Professor' OR title='Professor'),
@@ -42,7 +42,7 @@ CREATE TABLE `Instructor` (
   REFERENCES `User` (`username`)
 );
 
-CREATE TABLE `Student` (
+CREATE TABLE IF NOT EXISTS `Student` (
   `username` VARCHAR(250) NOT NULL,
   `student_id` INT NOT NULL UNIQUE,
   `completed_credits` INT NOT NULL DEFAULT 0,
@@ -53,14 +53,14 @@ CREATE TABLE `Student` (
   ON DELETE CASCADE
 );
 
-CREATE TABLE `Classroom` (
+CREATE TABLE IF NOT EXISTS `Classroom` (
   `classroom_id` VARCHAR(200) NOT NULL,
   `campus` VARCHAR(250) NOT NULL,
   `capacity` INT NOT NULL,
   PRIMARY KEY (`classroom_id`)
 );
 
-CREATE TABLE `Course` (
+CREATE TABLE IF NOT EXISTS `Course` (
   `course_id` VARCHAR(250) NOT NULL,
   `name` VARCHAR(250) NOT NULL,
   `credits` INT NOT NULL,
@@ -78,7 +78,7 @@ CREATE TABLE `Course` (
 );
 
 -- if grade is null, that means student is taking the course this semester
-CREATE TABLE `Grades` (
+CREATE TABLE IF NOT EXISTS `Grades` (
   `student_id` INT NOT NULL,
   `course_id` VARCHAR(250) NOT NULL,
   `grade` FLOAT,
@@ -90,7 +90,7 @@ CREATE TABLE `Grades` (
   REFERENCES `Course` (`course_id`)
 );
 
-CREATE TABLE `Prerequisites` (
+CREATE TABLE IF NOT EXISTS `Prerequisites` (
   `prq_for` VARCHAR(250) NOT NULL,
   `prq` VARCHAR(250) NOT NULL,
   PRIMARY KEY (`prq_for`, `prq`),

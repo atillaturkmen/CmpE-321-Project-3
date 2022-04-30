@@ -1,5 +1,5 @@
 -- trigger for course quota
-DELIMITER $$
+DROP TRIGGER IF EXISTS Course_Quota;
 CREATE TRIGGER Course_Quota
 	BEFORE INSERT
     ON Grades FOR EACH ROW
@@ -21,11 +21,10 @@ BEGIN
 		SIGNAL SQLSTATE '45000' 
 		SET MESSAGE_TEXT = "Course quota is full!";
 	END IF;
-END$$
-DELIMITER ;
+END;
 
 -- trigger for classroom capacity check
-DELIMITER $$
+DROP TRIGGER IF EXISTS Classroom_Quota_Exceeded;
 CREATE TRIGGER Classroom_Quota_Exceeded
 	BEFORE INSERT
     ON Course FOR EACH ROW
@@ -41,11 +40,10 @@ BEGIN
 		SIGNAL SQLSTATE '45000' 
 		SET MESSAGE_TEXT = "Course quota exceeds classroom capacity!";
 	END IF;
-END$$
-DELIMITER ;
+END;
 
 -- trigger for database manager limit
-DELIMITER $$
+DROP TRIGGER IF EXISTS Database_Manager_Limit;
 CREATE TRIGGER Database_Manager_Limit
 	BEFORE INSERT
     ON Database_Manager FOR EACH ROW
@@ -60,11 +58,10 @@ BEGIN
 		SIGNAL SQLSTATE '45000' 
 		SET MESSAGE_TEXT = "There cannot be more than 4 database managers!";
 	END IF;
-END$$
-DELIMITER ;
+END;
 
 -- trigger for updating gpa and completed credits of students
-DELIMITER $$
+DROP TRIGGER IF EXISTS Student_Info_Update;
 CREATE TRIGGER Student_Info_Update
 	AFTER UPDATE
     ON Grades FOR EACH ROW
@@ -86,5 +83,4 @@ BEGIN
 	UPDATE Student
   SET completed_credits=completed_credits+credit_of_course
   WHERE student_id=new.student_id;
-END$$
-DELIMITER ;
+END;
