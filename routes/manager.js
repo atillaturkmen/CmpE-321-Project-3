@@ -22,6 +22,7 @@ router.get('/manager/add-student', (req, res) => {
 });
 
 router.post('/manager/add-student', async (req, res) => {
+    let student_id = req.body.student_id;
     let username = req.body.username;
     let password = req.body.password;
     let name = req.body.name;
@@ -29,7 +30,7 @@ router.post('/manager/add-student', async (req, res) => {
     let email = req.body.email;
     let department = req.body.department;
     let hashedPassword = sha256(password);
-    await db.addStudent(username, hashedPassword, name, surname, email, department);
+    await db.addStudent(username, hashedPassword, name, surname, email, department, student_id);
     res.redirect("/manager/view-students");
 });
 

@@ -1,10 +1,10 @@
 const query = require("./_query");
 
-exports.addStudent = function (username, password, name, surname, email, department) {
+exports.addStudent = function (username, password, name, surname, email, department, student_id) {
     return query(`
     INSERT INTO User VALUES (?, ?, ?, ?, ?, ?);
-    INSERT INTO Student (username) VALUES (?);
-    `, [username, password, name, surname, email, department, username]);
+    INSERT INTO Student (username, student_id) VALUES (?, ?);
+    `, [username, password, name, surname, email, department, username, student_id]);
 };
 
 exports.addInstructor = function (username, password, name, surname, email, department, title) {
